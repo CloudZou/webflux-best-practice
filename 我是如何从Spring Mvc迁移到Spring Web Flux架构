@@ -1,0 +1,13 @@
+我是如何在一个月的时间从Spring Mvc 非常平滑的迁移到Spring WebFlux架构的? 解决了那些问题：
+controller层如何适配的问题（核心是Mono/Flux的使用）一些基本东西的说明？
+dao层的选择，jpa or mybatis ? 传统模式是mybatis,但是这里我混合使用了mybatis + jpa的模式。原因？ mybatis的复杂sql语句的维护+jpa的单表的操作便利性。
+为什么要用jpa？因为async db目前只有jpa支持，配合上r2dbc,可以在db层实现异步非阻塞 。靠谱吗。。。？
+数据库从mybatis 切换到了postgresql, 为什么？因为r2dbc目前驱动只有postgresql.mybatis暂时不支持，碰到的坑有那些？ 数据库如何从postgresql 迁移到mysql
+数据库事务怎么解决？ reactive transcation manager vs transcation manager ?
+spring reactive redis的使用。
+spring security + jwt的切换。 为什么要切换？ 因为再也没有HttpServletRequest,
+什么是spring websession?记得干掉spring web session.否则前端如果使用promise.all会骂傻X后端了。
+quartz 如何引入，使用webflux调用quartz api添加定时任务，定时任务的执行逻辑又使用传统的阻塞模式(使用mybatis)，原因这样大部分关于定时任务的逻辑不需要变更，或者可以慢慢变更
+如何使用reactive transcation manager实现一个比较常见的提交订单的业务流程，mono/flux各种花式api（如何在没有scala那样强大的for语法或者cats这样的库的前提下写出易读的代码，再也没有全局变量）
+关于empty/switchIfEmpty/defaultIfEmpty/Mono.error/Flux.error等reactor的基础api的一些体会
+关于aspect切面 + reactive 编程的一些实践和体会。
